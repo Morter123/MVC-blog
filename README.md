@@ -1,2 +1,2 @@
-# trainMVC
+# MVC
 Как я изучал MVC
