@@ -1,7 +1,7 @@
 <?php
 
 $routes = [
-    '' => 'index.php',
+    '' => 'main.php',
     'about' => 'about.php',
     
 ];

@@ -8,7 +8,7 @@ function dump($data) {
 
 function abort($code = 404) {
     http_response_code($code);
-    require_once ERRORS . "/{$code}_tpl.php";
+    require_once VIEWS . "/errors/{$code}_tpl.php";
     die;
 }
 
