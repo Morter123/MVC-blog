@@ -11,6 +11,4 @@ define('CONTROLLERS', APP . '/controllers');
 define('CORE', APP . '/core');
 define('VIEWS', APP . '/views');
 
-define('ERRORS', VIEWS . '/errors');
-
 define('PATH', 'http://mvc');

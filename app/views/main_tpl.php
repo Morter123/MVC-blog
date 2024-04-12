@@ -9,8 +9,8 @@
                         <div class="card-img-top" alt="...">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-center"><?php echo $post['title'] ?></h5>
-                                <p class="card-text"><?php echo $post['desc'] ?></p>
-                                <a href="post/<?php echo $post['link'] ?>" class="align-self-center">Click Here!</a>
+                                <p class="card-text"><?php echo $post['content'] ?></p>
+                                <a href="post?id=<?php echo $post['id'] ?>" class="align-self-center">Click Here!</a>
                             </div>
                         </div>
                     </div>
