@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <?php echo $post; ?>
+                <?php foreach ($posts as $post): ?>
+                <?php echo ($post['content']) ?>
+                <?php endforeach?>
             </div>
             <?php require_once VIEWS . '/template/sidebar.php'; ?>
         </div>
