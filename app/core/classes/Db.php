@@ -28,9 +28,13 @@ final class Db {
     }
 
     function query($query, $params = []) {
+        try {
         $this->stmt = $this->connection->prepare($query);
         $this->stmt->execute($params);
         return $this;
+        } catch (PDOException $e) {
+            abort();
+        }
     }
 
 // Файнды нужны для возможности обращения к объекту, а не PdoStatement'y

@@ -13,5 +13,15 @@ function abort($code = 404) {
     die;
 }
 
+function load($fillable = []) {
+    $data = [];
+    foreach ($_POST as $key => $val) {
+        if (in_array($key, $fillable)) {
+            $data[$key] = $val;
+        }
+    } 
+    return $data;
+}   
+
 
 

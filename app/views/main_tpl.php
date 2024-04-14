@@ -8,7 +8,7 @@
                     <div class="card mb-3">
                         <div class="card-img-top" alt="...">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-center"><?php echo $post['title'] ?></h5>
+                                <h5 class="card-title text-center mb-2"><?php echo $post['title'] ?></h5>
                                 <p class="card-text"><?php echo $post['content'] ?></p>
                                 <a href="post?id=<?php echo $post['id'] ?>" class="align-self-center">Click Here!</a>
                             </div>
