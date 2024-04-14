@@ -1,21 +1,35 @@
 <?php
 
-class Db {
+final class Db {
 
     // Приватная, чтобы нельзя было создать извне
     private $connection;
     private $stmt;
+    private static $instance = null;
 
-    // При создании экземпляра класса Db,,,, переменной $connect, принадлежащей текущему (создаваемому) объекту, присваиваю - "подключение PDO", 
-    public function __construct(array $db_config) {
-        
-        $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};charset={$db_config['charset']}";
-        $this->connection = new PDO($dsn, $db_config['username'], $db_config['password'], $db_config['options']);
+    private function __construct()
+    {
     }
 
-    function query($query) {
+
+
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    // При создании экземпляра класса Db,,,, переменной $connect, принадлежащей текущему (создаваемому) объекту, присваиваю - "подключение PDO", 
+    public function getConnection(array $db_config) {
+        $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};charset={$db_config['charset']}";
+        $this->connection = new PDO($dsn, $db_config['username'], $db_config['password'], $db_config['options']);
+    return self::$instance;
+    }
+
+    function query($query, $params = []) {
         $this->stmt = $this->connection->prepare($query);
-        $this->stmt->execute();
+        $this->stmt->execute($params);
         return $this;
     }
 
