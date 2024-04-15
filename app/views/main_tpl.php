@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                <h1 class="text-center">All Posts</h1>
                 <?php foreach ($posts as $post) : ?>
                     <div class="card mb-3">
                         <div class="card-img-top" alt="...">

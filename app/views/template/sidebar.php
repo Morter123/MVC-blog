@@ -1,4 +1,5 @@
 <div class="col-md-4">
+    <h1 class="text-center">Recents Posts</h1>
     <ul class="list-group">
         <?php foreach ($recent_posts as $recent_post) : ?>
             <li class="list-group-item text-truncate">

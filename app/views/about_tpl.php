@@ -4,9 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <?php foreach ($posts as $post): ?>
-                <?php echo ($post['content']) ?>
-                <?php endforeach?>
+                <h1 class="text-center">About site</h1>
+                <?php foreach ($posts as $post) : ?>
+                    <?php echo ($post['content']) ?>
+                <?php endforeach ?>
             </div>
             <?php require_once VIEWS . '/template/sidebar.php'; ?>
         </div>
