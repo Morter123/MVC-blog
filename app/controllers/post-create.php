@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'max' => 100,
         ],
         'excerpt' => [
-            'required' => false,
+            'required' => true,
             'min' => 1,
             'max' => 200,
         ],
@@ -24,6 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'max' => 5000,
         ],
     ]);
+
+    if ($validation->hasErrors()) {
+        dump($validation->getErrors());
+    } else {
+        echo 'Ошибок нет';
+    }
+    die();
 
     // if (empty($data['title'])) {
     //     $errors['title'] = 'Заполните поле "Title"';
