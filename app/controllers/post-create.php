@@ -7,7 +7,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     require_once CORE . '/classes/Validator.php';
     $validator = new Validator();
-    $validation = $validator->validate();
+    $validation = $validator->validate($data, $rules = [
+        'title' => [
+            'required' => true,
+            'min' => 1,
+            'max' => 100,
+        ],
+        'excerpt' => [
+            'required' => false,
+            'min' => 1,
+            'max' => 200,
+        ],
+        'content' => [
+            'required' => true,
+            'min' => 1,
+            'max' => 5000,
+        ],
+    ]);
 
     // if (empty($data['title'])) {
     //     $errors['title'] = 'Заполните поле "Title"';
