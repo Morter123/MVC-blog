@@ -1,5 +1,11 @@
 <?php
 
+namespace vendor;
+
+use PDO;
+use PDOException;
+use PDOStatement;
+
 final class Db
 {
 

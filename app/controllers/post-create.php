@@ -1,11 +1,12 @@
 <?php
 
+use vendor\Validator;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $fillable = ['title', 'content', 'excerpt'];
+    $fillable = ['title', 'content', 'excerpt', 'email', 'password'];
     $data = load($fillable);
-    
-    require_once CORE . '/classes/Validator.php';
+
     $validator = new Validator();
     $validation = $validator->validate($data, $rules = [
         'title' => [
@@ -25,26 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ],
     ]);
 
-    if ($validation->hasErrors()) {
-        dump($validation->getErrors());
+    if (!$validation->hasErrors()) {
+        $db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (:title, :excerpt, :content)", $data);
+        $_SESSION['success'] = "OK";
+        redirect('/posts/create');  
     } else {
-        echo 'Ошибок нет';
+        $_SESSION['error'] = "DB Error";
+        
     }
-    die();
-
-    // if (empty($data['title'])) {
-    //     $errors['title'] = 'Заполните поле "Title"';
-    // }
-    // if (empty($data['excerpt'])) {
-    //     $errors['excerpt'] = 'Заполните поле "Excerpt"';
-    // }
-    // if (empty($data['content'])) {
-    //     $errors['content'] = 'Заполните поле "Content"';
-    // }
-    
-    if (empty($errors)) {
-        $db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (:title, :excerpt, :content)", $data);  
-        redirect('/posts/create');
-    }    
 }
+
 require_once VIEWS . "/post-create_tpl.php";

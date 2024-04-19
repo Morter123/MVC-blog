@@ -1,21 +1,23 @@
 <?php
 
+namespace vendor;
+
 class Validator
 {
 
     protected $errors = [];
-    protected $rules_list = ['required', 'min', 'max',];
+    protected $rules_list = ['required', 'min', 'max'];
     protected $messagesError = [
         'required' => 'Поле :fieldname обязательно для заполнения',
-        'min' => 'В поле :fieldname минимальное кол-во символов :rulevalue',
-        'max' => 'В поле :fieldname максимальное кол-во символов :rulevalue',
+        'min' => 'Минимальное количество символов :rulevalue',
+        'max' => 'Максимальное количество символов :rulevalue',
     ];
 
     public function validate($data = [], $rules = [])
     {
 
         foreach ($data as $fieldname => $value) {
-            if (in_array($fieldname, array_keys($rules))) {
+            if (isset($rules[$fieldname])) {
                 $this->check([
                     'fieldname' => $fieldname,
                     'value' => $value,
@@ -45,6 +47,9 @@ class Validator
     // Функции валидации для call_user_func_array
     protected function required($value, $rule_value)
     {
+        if ($rule_value == false) {
+            return true;
+        }
         return !empty(trim($value));
     }
 
@@ -59,6 +64,7 @@ class Validator
     }
 
 
+    
     protected function addError($fieldname, $error)
     {
         $this->errors[$fieldname][] = $error;
@@ -70,5 +76,18 @@ class Validator
 
     public function hasErrors() {
         return !empty($this->getErrors());
+    }
+
+    public function listErrors($fieldname) {
+        $output = '';
+        if (isset($this->errors[$fieldname])) {
+            $output .= '<div class="invalid-feedback d-block">';
+
+            foreach ($this->errors[$fieldname] as $fieldname => $error) {
+                $output .= "<li>{$error}</li>";
+            }
+            $output .= "</ul></div>";
+        }
+        return $output;
     }
 }

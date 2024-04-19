@@ -1,10 +1,8 @@
 <div class="col-md-4">
     <h1 class="text-center">Recents Posts</h1>
-    <ul class="list-group">
+    <div class="list-group">
         <?php foreach ($recent_posts as $recent_post) : ?>
-            <li class="list-group-item text-truncate">
-                <a href="post?id=<?php echo $recent_post['id'] ?>"><?php echo $recent_post['title'] ?></a>
-            </li>
+            <a class="list-group-item list-group-item-action" aria-current="true" href="post?id=<?php echo $recent_post['id']; ?>"><?php echo $recent_post['title']; ?></a>
         <?php endforeach ?>
-    </ul>
+    </div>
 </div>

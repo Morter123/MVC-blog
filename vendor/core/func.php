@@ -29,10 +29,12 @@ function load($fillable = []) {
     return $data;
 }   
 
+// Функция чтобы оставлять поля заполненными
 function old($fieldname) {
     return isset($_POST[$fieldname]) ? h(trim($_POST[$fieldname])) : ""; 
 }
 
+// h - сократил функцию htmlspecialchairs (лучше делать, если что-то еще хотим сделать со строкой)
 function h($str) {
     return htmlspecialchars($str, ENT_QUOTES);
 }
@@ -47,5 +49,16 @@ function redirect($url = '') {
     }
     header("Location: {$redirect}");
     die();
+}
+
+function get_Alerts() {
+    if (!empty($_SESSION['success'])) {
+        require_once VIEWS . '/template/alert_success.php';
+        unset($_SESSION['success']);
+    }
+    if (!empty($_SESSION['error'])) {
+        require_once VIEWS . '/template/alert_error.php';
+        unset($_SESSION['error']);
+    }
 }
 
