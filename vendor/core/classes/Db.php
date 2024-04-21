@@ -9,7 +9,7 @@ use PDOStatement;
 final class Db
 {
 
-    // Приватная, чтобы нельзя было создать извне
+    // Приватная, чтобы нельзя было создать извне $connection - подключение, $stmt - объект PDOStatement, $instance - созданный объект
     private $connection;
     private $stmt;
     private static $instance = null;
@@ -68,5 +68,9 @@ final class Db
             abort();
         }
         return $res;
+    }
+
+    function rowCount() {
+        return $this->stmt->rowCount();
     }
 }

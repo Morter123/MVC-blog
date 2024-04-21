@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="text-center">New post</h1>
 
-        <form action="" method="post">
+        <form action="/posts" method="post">
 
             <div class="">
                 <label for="title" class="form-label"></label>

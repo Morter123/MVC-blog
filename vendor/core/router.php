@@ -1,7 +1,7 @@
 <?php
 
 require_once CONFIG . '/routes.php';
-
+    
 $uri= trim(parse_url($_SERVER['REQUEST_URI'])['path'], '/');
 
 // Зависит от потребностей, если массив в массиве, то перебор массива, пути смотреть в папке config/config.php

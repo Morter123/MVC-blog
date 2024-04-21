@@ -1,6 +1,7 @@
 <?php
 
 use vendor\Db;
+use vendor\Router;
 
 session_start();
 
@@ -16,6 +17,13 @@ require_once CORE . "/func.php";
 $db_config = require_once CONFIG . '/db.php';
 $db = (Db::getInstance())->getConnection($db_config);
 
-
 // Подключаю контроллер с views
-require_once CORE . '/router.php';
+// require_once CORE . '/router.php';
+
+$router = new Router();
+
+require_once CONFIG . '/routes.php';
+
+$router->match();
+
+

@@ -11,7 +11,8 @@
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-center mb-2"><?php echo $post['title'] ?></h5>
                                 <p class="card-text"><?php echo $post['content'] ?></p>
-                                <a href="post?id=<?php echo $post['id'] ?>" class="align-self-center">Click Here!</a>
+                                <a class="btn btn-primary align-self-center" role="button" href="posts?id=<?php echo $post['id'] ?>">Перейти к посту  </a>
+                                
                             </div>
                         </div>
                     </div>
