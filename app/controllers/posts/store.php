@@ -2,7 +2,7 @@
 
 use vendor\Validator;
 
-global $db;
+$db = vendor\App::get('Db');
 
 $fillable = ['title', 'content', 'excerpt'];
 $data = load($fillable);

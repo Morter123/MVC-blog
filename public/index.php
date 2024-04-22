@@ -1,29 +1,18 @@
 <?php
 
-use vendor\Db;
-use vendor\Router;
-
 session_start();
 
+use vendor\Router;
+
+require_once dirname(__DIR__) . '/config/config.php';
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 // Подключаю пути
-require_once dirname(__DIR__) . '/config/config.php';
+require_once __DIR__ . '/bootstrap.php';
 
-// Подключаю функции
 require_once CORE . "/func.php";
 
-// Подключаю БД
-// require_once CORE . '/classes/Db.php';
-$db_config = require_once CONFIG . '/db.php';
-$db = (Db::getInstance())->getConnection($db_config);
-
-// Подключаю контроллер с views
-// require_once CORE . '/router.php';
-
 $router = new Router();
-
 require_once CONFIG . '/routes.php';
-
 $router->match();
 
 

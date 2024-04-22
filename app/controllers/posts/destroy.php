@@ -1,6 +1,6 @@
 <?php
 
-global $db;
+$db = vendor\App::get('Db');
 
 $api_data = json_decode(file_get_contents("php://input"), 1);
 

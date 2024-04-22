@@ -11,9 +11,3 @@ $router->get('about', 'about.php');
 
 $router->get('contact', 'contact.php');
 
-// $routes = [
-//     '' => 'main.php',
-//     'about' => 'about.php',
-//     'post' => 'post.php',
-//     'posts/create'=>'post-create.php',
-// ];

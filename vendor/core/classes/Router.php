@@ -34,15 +34,16 @@ class Router {
             'controller' => $controller,
             'method' => $method,
         ];
+        return $this;
     }
 
     public function get($uri, $controller) {
-        $this->add($uri, $controller, 'GET');
+        return $this->add($uri, $controller, 'GET');
     }
     public function post($uri, $controller) {
-        $this->add($uri, $controller, 'POST');
+        return $this->add($uri, $controller, 'POST');
     }
     public function delete($uri, $controller) {
-        $this->add($uri, $controller, 'DELETE');
+        return $this->add($uri, $controller, 'DELETE');
     }
 }

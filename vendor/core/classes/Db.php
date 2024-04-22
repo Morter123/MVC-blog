@@ -30,9 +30,15 @@ final class Db
     public function getConnection(array $db_config)
     {
         try {
+
+            if ($this->connection instanceof PDO) {
+                return $this;
+            }
+
             $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};charset={$db_config['charset']}";
             $this->connection = new PDO($dsn, $db_config['username'], $db_config['password'], $db_config['options']);
-            return self::$instance;
+            return $this;
+
         } catch (PDOException $e) {
             abort(500);
         }
@@ -70,7 +76,8 @@ final class Db
         return $res;
     }
 
-    function rowCount() {
+    function rowCount()
+    {
         return $this->stmt->rowCount();
     }
 }

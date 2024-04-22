@@ -1,6 +1,6 @@
 <?php
 
-global $db;
+$db = vendor\App::get('Db');
 
 $posts = $db->query('SELECT * FROM posts')->findAll();
 
