@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_SESSION['guest'])) {
-    $_SESSION['auth'] = "Misha";
+    $_SESSION['auth']['name'] = "Misha";
     unset($_SESSION['guest']);
 }
 redirect("/");

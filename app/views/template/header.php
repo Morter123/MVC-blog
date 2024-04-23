@@ -34,17 +34,16 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav">
-                            <?php if (isset($_SESSION['guest'])) : ?>
+                            <?php if (check_auth('guest')): ?>
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="auth">Login</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="register">Register</a>
                                 </li>
-                            <?php endif; ?>
-                            <?php if (isset($_SESSION['auth'])) : ?>
+                            <?php else: ?>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page">Привет, <?php echo ($_SESSION['auth']); ?></a>
+                                    <a class="nav-link active" aria-current="page">Привет, <?php echo ($_SESSION['auth']['name']); ?></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="logout">Logout</a>

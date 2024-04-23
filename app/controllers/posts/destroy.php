@@ -2,7 +2,7 @@
 
 $db = vendor\App::get('Db');
 
-$api_data = json_decode(file_get_contents("php://input"), 1);
+// $api_data = json_decode(file_get_contents("php://input"), 1);
 
 $data = $api_data ?? $_POST;
 
@@ -16,9 +16,9 @@ if ($db->rowCount()) {
     $res['answer'] = $_SESSION['error'] = "Deletion error"; 
 }
 
-if ($api_data) {
-    echo json_encode($res);
-    die;
-}
+// if ($api_data) {
+//     echo json_encode($res);
+//     die;
+// }
 
 redirect('/');

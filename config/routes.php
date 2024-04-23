@@ -1,6 +1,12 @@
 <?php
-// Список доступных страниц: метод для страницы(путь в браузере/ее контроллер)
 
+const MIDDLEWARE = [
+    'auth' => vendor\middleware\Auth::class,
+    'guest' => vendor\middleware\Guest::class,
+];
+
+
+// Список доступных страниц: метод для страницы(путь в браузере/ее контроллер)
 $router->get('', 'posts/index.php');
 $router->get('posts', 'posts/show.php')->only('auth');
 $router->get('posts/create', 'posts/create.php')->only('auth');
