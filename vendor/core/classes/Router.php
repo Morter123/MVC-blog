@@ -4,7 +4,7 @@ namespace vendor;
 
 class Router {
 
-    public $routes = [];
+    protected $routes = [];
     protected $uri;
     protected $method;
 
@@ -18,6 +18,16 @@ class Router {
         $matches = false;
         foreach ($this->routes as $route) {
             if (($route['uri'] === $this->uri) && ($route['method'] === strtoupper($this->method))) {
+
+                if($route['middleware'] === 'auth') {
+                    if (!check_auth('auth'))
+                    redirect('/register');
+                }
+                if($route['middleware'] === 'guest') {
+                    if (!check_auth('guest'))
+                    redirect();
+                }
+
                 require_once CONTROLLERS . "/{$route['controller']}";
                 $matches = true;
                 break;
@@ -28,11 +38,17 @@ class Router {
         }
     }
 
+    public function only($middleware) {
+        $this->routes[array_key_last($this->routes)]["middleware"] = $middleware;
+        return $this;
+    }
+
     public function add($uri, $controller, $method) {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
             'method' => $method,
+            'middleware' => null,
         ];
         return $this;
     }

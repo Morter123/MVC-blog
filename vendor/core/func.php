@@ -62,3 +62,7 @@ function get_Alerts() {
     }
 }
 
+function check_auth($status) {
+    return isset($_SESSION[$status]);
+}
+
