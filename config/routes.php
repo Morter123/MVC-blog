@@ -8,7 +8,7 @@ const MIDDLEWARE = [
 
 // Список доступных страниц: метод для страницы(путь в браузере/ее контроллер)
 $router->get('', 'posts/index.php');
-$router->get('posts', 'posts/show.php')->only('auth');
+$router->get('posts', 'posts/show.php');
 $router->get('posts/create', 'posts/create.php')->only('auth');
 $router->post('posts', 'posts/store.php')->only('auth');
 $router->delete('posts', 'posts/destroy.php')->only('auth');

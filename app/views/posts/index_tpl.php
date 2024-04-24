@@ -12,11 +12,14 @@
                                 <h5 class="card-title text-center mb-2"><?php echo $post['title'] ?></h5>
                                 <p class="card-text"><?php echo $post['content'] ?></p>
                                 <a class="btn btn-primary align-self-center" role="button" href="posts?id=<?php echo $post['id'] ?>">Перейти к посту  </a>
-                                
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
+                    <hr>
+                    <?php for($i = 1; $i <= $page_count; $i++)
+                        echo "<a href='?page={$i}'>{$i}</a> ";
+                    ?>
             </div>
             <?php require_once VIEWS . '/template/sidebar.php'; ?>
         </div>

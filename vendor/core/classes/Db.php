@@ -80,4 +80,8 @@ final class Db
     {
         return $this->stmt->rowCount();
     }
+
+    function getColumn() {
+        return $this->stmt->fetchColumn();
+    }
 }
