@@ -1,4 +1,5 @@
 <?php
+require_once "/OSPanel/domains/MVC/vendor/core/func.php";
 
 $arr = range(1, 101);
 

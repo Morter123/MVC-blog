@@ -1,28 +1,19 @@
 <?php
 
 /**
- * @var vendor\Db $db подсказка вс коду для поиска файндол
+ * @var vendor\Db $db подсказка вс коду
  */
+
+use vendor\Pagination;
 
 $db = vendor\App::get('Db');
 
-$per_page = 5;
+$page = $_GET['page'] ?? 1;
+$per_page = 4;
 $total = $db->query('SELECT count(*) as total FROM posts')->getColumn();
-$page_count = ceil($total / $per_page);
+$pagination = new Pagination((int)$page, $per_page, $total);
 
-$page = isset($_GET['page']) ? (int)($_GET['page']) : 1;
-    if ($page < 1) {
-    $page = 1;
-}
-if ($page > $page_count) {
-    $page = $page_count;
-}
-
-$start = ($page - 1) * $per_page;
-
-if ($start > $total) {
-    $start;
-}
+$start = $pagination->getStart();
 
 $posts = $db->query("SELECT * FROM posts ORDER BY id DESC LIMIT {$start}, {$per_page}")->findAll();
 

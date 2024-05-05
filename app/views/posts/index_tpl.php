@@ -3,6 +3,7 @@
 <main class="main mt-2">
     <div class="container">
         <div class="row">
+            
             <div class="col-md-8">
                 <h1 class="text-center">All Posts</h1>
                 <?php foreach ($posts as $post) : ?>
@@ -16,11 +17,9 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-                    <hr>
-                    <?php for($i = 1; $i <= $page_count; $i++)
-                        echo "<a href='?page={$i}'>{$i}</a> ";
-                    ?>
+                <div class="d-flex justify-content-center"><?php echo $pagination->getHtml(); ?></div>
             </div>
+
             <?php require_once VIEWS . '/template/sidebar.php'; ?>
         </div>
 </main>
