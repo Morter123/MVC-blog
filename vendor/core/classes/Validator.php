@@ -6,11 +6,14 @@ class Validator
 {
 
     protected $errors = [];
-    protected $rules_list = ['required', 'min', 'max'];
-    protected $messagesError = [
+    protected $rules_list = ['required', 'min', 'max', 'match', 'unique'];
+    protected $messagesError= [ 
         'required' => 'Поле :fieldname обязательно для заполнения',
         'min' => 'Минимальное количество символов :rulevalue',
         'max' => 'Максимальное количество символов :rulevalue',
+        'email' => 'Неверный email',
+        'match' => 'Пароли не совпадают ',
+        'unique' => ':fieldname уже существует',
     ];
 
     public function validate($data = [], $rules = [])
@@ -26,6 +29,7 @@ class Validator
             }
         }
         return $this;
+
     }
 
     protected function check($field)
@@ -34,10 +38,14 @@ class Validator
         foreach ($field['rules'] as $rule => $rule_value) {
             if (in_array($rule, $this->rules_list)) {
                 if (!call_user_func_array([$this, $rule], [$field['value'], $rule_value])) {
-                    // echo "Поле {$field['fieldname']} не прошло проверку по правилу {$rule}<br>";
-                    $this->addError($field['fieldname'], str_replace([':fieldname', ':rulevalue'], [$field['fieldname'], $rule_value], $this->messagesError[$rule]));
+
+                    $this->addError($field['fieldname'], 
+                    str_replace([':fieldname', ':rulevalue'], 
+                    [$field['fieldname'], $rule_value], 
+                    $this->messagesError[$rule]));
+
                 } else {
-                    // echo "Поле {$field['fieldname']} прошло проверку по правилу {$rule}<br>";
+
                 }
             }
         }

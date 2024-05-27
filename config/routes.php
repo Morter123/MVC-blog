@@ -13,10 +13,11 @@ $router->get('posts/create', 'posts/create.php')->only('auth');
 $router->post('posts', 'posts/store.php')->only('auth');
 $router->delete('posts', 'posts/destroy.php')->only('auth');
 
-$router->get('about', 'about.php')->only('auth');
+$router->get('about', 'about.php');
 
 $router->get('contact', 'contact.php');
 
 $router->get('register', 'users/register.php')->only('guest');
-$router->get('auth', 'users/login.php')->only('guest');
+$router->post('register', 'users/store.php')->only('guest');
+$router->get('login', 'users/login.php')->only('guest');
 $router->get('logout', 'users/logout.php')->only('auth');

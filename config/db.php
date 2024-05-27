@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'host' => 'localhost',
+    'host' => 'MySQL-8.2',
     'dbname' => 'MVC',
     'username' => 'root',
     'password' => '',
