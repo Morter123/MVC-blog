@@ -3,7 +3,6 @@
 use vendor\ServicesContainer;
 use vendor\Db;
 use vendor\App;
-use vendor\Test;
 
 $container = new ServicesContainer();
 

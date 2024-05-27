@@ -27,11 +27,16 @@ $validation = $validator->validate($data, $rules = [
 ]);
 
 if (!$validation->hasErrors()) {
-    $db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (:title, :excerpt, :content)", $data);
-    $_SESSION['success'] = "OK";
+    if ($db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (:title, :excerpt, :content)", $data)) {
+
+        $_SESSION['success'] = "OK";
+    } else {
+        $_SESSION['error'] = "DB Error";
+    }
     redirect('/');
+    
 } else {
-    // $_SESSION['error'] = "DB Error";
+    require_once VIEWS . "/posts/create_tpl.php";
 }
 
-require_once VIEWS . "/posts/create_tpl.php";
+
